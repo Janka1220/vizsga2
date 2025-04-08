@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div id="admin-panel-screen" style="display: none;">
+    <h2>Admin Panel</h2>
+
+    <div id="admin-users-list">
+      <h3>Regisztrált felhasználók</h3>
+    </div>
+
+    <div id="admin-comments-list">
+      <h3>Reportált kommentek</h3>
+
+    </div>
+  </div>
+
+  <div class="admin-login-buttons">
+    <button id="admin-logout-button" style="display: none;">
+      <a href="index.html" style="text-decoration: none; color: white;">Admin Kijelentkezés</a>
+    </button>
+  </div>
+
+  <div id="confirm-modal" style="display:none;" class="custom-modal">
+    <div class="custom-modal-content">
+      <p id="confirm-message">Biztosan törölni szeretnéd a fiókot?</p>
+      <div class="custom-modal-actions">
+        <button id="confirm-yes">Igen</button>
+        <button id="confirm-no">Mégse</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-auth-message" style="display: none;"></div>
+
+
+  <script type="module" src="admin.js"></script>
+  
+  <button id="back"><a id="back" style="text-decoration: none; color: black;" href="index.html">Vissza</a></button>
+</body>
+</html>

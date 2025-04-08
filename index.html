@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feed the Meow!</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body id="game-container">
+
+  <div id="start-screen">
+    <h1 class="game-title">
+      <p>FEED</p>
+      <p>THE</p>
+      <p>MEOW!</p>
+    </h1>
+    <div class="play-button" onclick="startGame()"></div>
+    <div class="bottom-left-button" onclick="openModal('login')"></div>
+  </div>
+
+  <button id="chat-toggle-button" onclick="toggleChat()"></button>
+
+
+  <div id="comment-section">
+    <span class="close-chat" onclick="toggleChat()">×</span>
+    <h3>Hozzászólások</h3>
+    <div id="comments-list"></div>
+    <textarea id="comment-input" placeholder="Írj hozzászólást..."></textarea>
+    <input type="text" id="comment-name" placeholder="Neved">
+    <button onclick="postComment()">Küldés</button>
+  </div>
+
+
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span onclick="document.getElementById('authModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+
+      <form id="signupForm" style="display:none">
+        <div class="container">
+          <h1>Regisztráció</h1>
+          <hr>
+          <input type="text" placeholder="Név" name="name" required>
+          <input type="text" placeholder="Email" name="email" required>
+          <input type="password" placeholder="Jelszó" name="psw" required>
+          <input type="password" placeholder="Jelszó még egyszer" name="psw-repeat" required>
+          <div class="clearfix">
+            <button type="button" onclick="closeModal()" class="cancelbtn">Mégse</button>
+            <button type="submit" class="signupbtn">Regisztrálás</button>
+          </div>
+          <div class="switch-link">
+            <p>Van fiókod? <button type="button" onclick="switchForm('login')">Bejelentkezés</button></p>
+          </div>
+        </div>
+      </form>
+
+
+      <form id="loginForm" style="display:block">
+        <div class="container">
+          <h1>Bejelentkezés</h1>
+          <hr>
+          <input type="text" placeholder="Email" name="login-email" required>
+          <input type="password" placeholder="Jelszó" name="login-psw" required>
+          <div class="clearfix">
+            <button type="button" onclick="closeModal()" class="cancelbtn">Mégse</button>
+            <button type="submit" class="signupbtn">Bejelentkezés</button>
+          </div>
+          <div class="switch-link">
+            <p>Nincs még fiókod? <button type="button" onclick="switchForm('signup')">Regisztráció</button></p>
+          </div>
+        </div>
+      </form>
+
+
+      <div id="profileView" style="display:none">
+        <div class="container">
+          <h1>Profilom</h1>
+          <hr>
+          <h2 style="display: flex; justify-content: center; align-items: center; gap: 8px; text-align: center;">
+            <span id="profileUsername" contenteditable="false"></span>
+            <button id="editNameBtn">✏️</button>
+          </h2>
+          <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+          <h4>Rekordjaid:</h4>
+          <ul id="record-list"><li>Betöltés...</li></ul>
+          <button onclick="logout()" class="signupbtn" style="width:100%">Kijelentkezés</button>
+          <button id="admin-panel-btn" class="signupbtn" style="width:100%; margin-top: 10px; display:none;" onclick="window.location.href='admin.html'">
+            Admin panel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="game-screen">
+    <canvas id="gameCanvas" width="800" height="900"></canvas>
+    <div id="game-over-screen" class="game-over-screen">
+      <h1 class="game-over-title">Game Over</h1>
+      <h2 id="final-score">Your Score: 0</h2>
+      <div class="play-again-button" onclick="startGame()"></div>
+      <div class="quit-button" onclick="quitGame()"></div>
+    </div>
+  </div>
+
+  <div id="report-modal" style="display:none;" class="modal-overlay">
+    <div class="modal-box">
+      <h3>Komment jelentése</h3>
+      <p>Miért szeretnéd jelenteni ezt a kommentet?</p>
+      <textarea id="report-reason-input" placeholder="Írd ide a jelentés okát..."></textarea>
+      <div class="modal-actions">
+        <button id="report-submit" class="confirm">Jelentés küldése</button>
+        <button id="report-cancel" class="cancel">Mégse</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="script.js"></script>
+  
+</body>
+</html>
