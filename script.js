@@ -20,12 +20,16 @@ let catImage;
 let badImages = [];
 let foodFallSpeed = 7;
 let lastFoodTime = 0;
-const foodInterval = 800;
+const foodInterval = 100;
 const speedIncreaseInterval = 20000;
 const speedIncrement = 2;
 let isRegistering = false;
 
 function startGame() {
+
+  const commentSection = document.getElementById('comment-section');
+    if (commentSection) commentSection.style.display = 'none';
+  
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("game-screen").style.display = "flex";
     document.getElementById("game-container").style.background = "url('background.jpeg') no-repeat center center/cover";
@@ -122,7 +126,7 @@ function createFood() {
 
     if (currentTime - lastFoodTime > foodInterval) {
         const x = Math.random() * (canvas.width - 60) + 30;
-        const isBad = Math.random() < 0.3;
+        const isBad = Math.random() < 0.5;
         const imgArray = isBad ? badImages : foodImages;
         const imageIndex = Math.floor(Math.random() * imgArray.length);
 
