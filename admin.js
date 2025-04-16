@@ -83,7 +83,6 @@ function viewRegisteredUsers(token) {
       for (const user of users) {
         const role = user.claims.admin ? "admin" : user.claims.user ? "user" : "guest";
 
-        // Név lekérése a Realtime Database-ből, ha a displayName nem elérhető
         let dbName = "N/A";
         try {
           const nameSnap = await get(ref(db, 'users/' + user.uid + '/name'));
@@ -133,7 +132,6 @@ window.updateUserRole = async (uid, role) => {
 
     showToast(`🎉 Sikeresen beállítva: ${role}`, "green");
 
-    // Ha saját magunkat rontottuk vissza user-re:
     if (uid === currentUser.uid && role !== "admin") {
       showToast("Jogosultság módosítva. Kijelentkeztetés...", "orange");
       setTimeout(() => {
