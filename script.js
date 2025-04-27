@@ -29,7 +29,8 @@ function startGame() {
 
   const commentSection = document.getElementById('comment-section');
     if (commentSection) commentSection.style.display = 'none';
-  
+
+
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("game-screen").style.display = "flex";
     document.getElementById("game-container").style.background = "url('background.jpeg') no-repeat center center/cover";
@@ -328,10 +329,20 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
       });
     })
     .then(() => {
+      emailjs.send('service_piz34ka', 'template_m5775lf', {
+        name: name,
+        email: email
+      })
+      .then((response) => {
+        console.log('✅ Email sikeresen elküldve!', response.status, response.text);
+      }, (error) => {
+        console.error('❌ Email küldési hiba:', error);
+      });
+  
       openModal();
     })
     .catch(err => showToast("Hiba: " + err.message, "#e74c3c"));
-});
+  });
 
 document.getElementById('loginForm').addEventListener('submit', function(e) {
   e.preventDefault();
